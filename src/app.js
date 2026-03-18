@@ -3,14 +3,12 @@ import { WebRTC } from './webrtc.js';
 import { db, ref, set, get, remove, onValue, off, onDisconnect } from './firebase.js';
 
 let myUserId = Math.random().toString(36).substring(2, 10);
-let currentMode = null; 
 
 // Random Chat Logic
 UI.btnRandom.addEventListener('click', async () => {
     const streamReady = await WebRTC.initLocalStream(UI.localVideo);
     if (!streamReady) return;
     
-    currentMode = 'random';
     UI.showVideoPanel(true);
     UI.setStatus("Searching for a stranger...");
 
@@ -49,14 +47,12 @@ UI.btnRandom.addEventListener('click', async () => {
     }
 });
 
-// Private Chat Logic - Create Room
+// Private Chat Logic
 UI.btnCreateRoom.addEventListener('click', async () => {
     const streamReady = await WebRTC.initLocalStream(UI.localVideo);
     if (!streamReady) return;
 
-    currentMode = 'private';
     const code = Math.random().toString(36).substring(2, 8).toUpperCase();
-    
     UI.codeSpan.innerText = code;
     UI.showVideoPanel(false);
     UI.setStatus("Waiting for someone to join...");
@@ -72,10 +68,9 @@ UI.btnCreateRoom.addEventListener('click', async () => {
     };
 });
 
-// Private Chat Logic - Join Room
 UI.btnJoinRoom.addEventListener('click', async () => {
     const code = UI.roomCodeInput.value.trim().toUpperCase();
-    if (code.length < 6) return alert("Enter a valid 6-character code!");
+    if (code.length < 6) return alert("Enter a valid code!");
 
     const roomSnap = await get(ref(db, `privateRooms/${code}`));
     if (!roomSnap.exists()) return alert("Room not found!");
@@ -83,7 +78,6 @@ UI.btnJoinRoom.addEventListener('click', async () => {
     const streamReady = await WebRTC.initLocalStream(UI.localVideo);
     if (!streamReady) return;
 
-    currentMode = 'private';
     UI.codeSpan.innerText = code;
     UI.showVideoPanel(false);
     UI.setStatus("Connecting...");
