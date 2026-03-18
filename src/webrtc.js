@@ -10,7 +10,6 @@ export let pc;
 export let localStream;
 export let remoteStream;
 let roomId = null;
-let role = null; 
 
 export const WebRTC = {
     async initLocalStream(localVideoElement) {
@@ -19,7 +18,7 @@ export const WebRTC = {
             localVideoElement.srcObject = localStream;
             return true;
         } catch (error) {
-            alert("Camera/Microphone permission denied! Browser settings me permission on karein.");
+            alert("Camera/Mic permission needed! Please allow it in browser settings.");
             return false;
         }
     },
@@ -48,9 +47,7 @@ export const WebRTC = {
 
     async createOffer(roomStr) {
         roomId = roomStr;
-        role = 'caller';
         const roomRef = ref(db, `rooms/${roomId}`);
-        
         onDisconnect(roomRef).remove();
 
         pc.onicecandidate = (event) => {
@@ -62,11 +59,7 @@ export const WebRTC = {
 
         const offer = await pc.createOffer();
         await pc.setLocalDescription(offer);
-
-        await set(child(roomRef, 'offer'), {
-            type: offer.type,
-            sdp: offer.sdp
-        });
+        await set(child(roomRef, 'offer'), { type: offer.type, sdp: offer.sdp });
 
         onValue(child(roomRef, 'answer'), (snapshot) => {
             if (snapshot.exists() && !pc.currentRemoteDescription) {
@@ -85,7 +78,6 @@ export const WebRTC = {
 
     async joinOffer(roomStr) {
         roomId = roomStr;
-        role = 'callee';
         const roomRef = ref(db, `rooms/${roomId}`);
 
         pc.onicecandidate = (event) => {
@@ -103,14 +95,46 @@ export const WebRTC = {
 
         const answer = await pc.createAnswer();
         await pc.setLocalDescription(answer);
-
-        await set(child(roomRef, 'answer'), {
-            type: answer.type,
-            sdp: answer.sdp
-        });
+        await set(child(roomRef, 'answer'), { type: answer.type, sdp: answer.sdp });
 
         onValue(child(roomRef, 'callerCandidates'), (snapshot) => {
             snapshot.forEach((childSnapshot) => {
+                const candidate = new RTCIceCandidate(childSnapshot.val());
+                pc.addIceCandidate(candidate);
+            });
+        });
+
+        return true;
+    },
+
+    hangup() {
+        if (pc) {
+            pc.close();
+            pc = null;
+        }
+        if (roomId) {
+            off(ref(db, `rooms/${roomId}`));
+            remove(ref(db, `rooms/${roomId}`));
+            roomId = null;
+        }
+    },
+
+    toggleAudio(btn) {
+        const audioTrack = localStream.getAudioTracks()[0];
+        if (audioTrack) {
+            audioTrack.enabled = !audioTrack.enabled;
+            btn.innerHTML = audioTrack.enabled ? '<i class="fas fa-microphone text-xl"></i>' : '<i class="fas fa-microphone-slash text-red-500 text-xl"></i>';
+        }
+    },
+
+    toggleVideo(btn) {
+        const videoTrack = localStream.getVideoTracks()[0];
+        if (videoTrack) {
+            videoTrack.enabled = !videoTrack.enabled;
+            btn.innerHTML = videoTrack.enabled ? '<i class="fas fa-video text-xl"></i>' : '<i class="fas fa-video-slash text-red-500 text-xl"></i>';
+        }
+    }
+};            snapshot.forEach((childSnapshot) => {
                 const candidate = new RTCIceCandidate(childSnapshot.val());
                 pc.addIceCandidate(candidate);
             });
