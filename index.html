@@ -8,37 +8,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-900 text-white h-screen flex flex-col overflow-hidden relative">
+<body class="bg-[#0f172a] text-white h-screen flex flex-col overflow-hidden">
 
-    <!-- Navbar (Landing Page ke liye) -->
-    <nav class="bg-gray-800 p-4 shadow-md flex justify-between items-center border-b border-gray-700">
-        <h1 class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-wider drop-shadow-lg">
-            T€ÄÇH̾ 𝙇ǗD∅
+    <!-- Navbar (Upar wala hissa) -->
+    <nav class="bg-[#1e293b] px-4 py-3 flex justify-between items-center z-20 shadow-lg">
+        <h1 class="text-xl md:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 tracking-wide drop-shadow-md flex items-center gap-2">
+            <i class="fas fa-video text-blue-500"></i> T€ÄÇH̾ 𝙇ǗD∅
         </h1>
-        
-        <div class="flex items-center gap-4">
-            <a href="https://t.me/SagarTech99" target="_blank" class="hidden sm:flex items-center gap-2 bg-[#0088cc] hover:bg-[#0077b5] text-white text-sm font-bold py-1.5 px-4 rounded-full transition shadow-[0_0_10px_rgba(0,136,204,0.5)]">
-                <i class="fab fa-telegram-plane text-lg"></i> Join
-            </a>
-            <div id="navStatusText" class="text-xs md:text-sm font-semibold text-green-400 bg-gray-900 px-3 py-1 rounded-full border border-gray-700">Ready</div>
-        </div>
+        <div id="statusText" class="text-sm text-gray-400 font-medium">Ready to connect</div>
     </nav>
 
     <!-- Main Content Area -->
-    <main class="flex-1 relative w-full h-full flex items-center justify-center p-4">
+    <main class="flex-1 relative w-full h-full flex items-center justify-center bg-black">
         
-        <!-- Landing Page Panel -->
-        <div id="landingPanel" class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md w-full text-center border border-gray-700 relative overflow-hidden">
+        <!-- Landing Page Panel (Jab call start na ho) -->
+        <div id="landingPanel" class="bg-[#1e293b] p-6 md:p-8 rounded-2xl shadow-2xl max-w-md w-[90%] text-center border border-gray-700 relative overflow-hidden z-10">
             <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-blue-500 rounded-full blur-[80px] opacity-20"></div>
 
-            <h2 class="text-3xl font-extrabold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">T€ÄÇH̾ 𝙇ǗD∅</h2>
+            <h2 class="text-3xl font-extrabold mb-1 text-blue-400">T€ÄÇH̾ 𝙇ǗD∅</h2>
             <p class="text-gray-400 text-sm mb-6">Connect & Chat with the World</p>
             
-            <a href="https://t.me/SagarTech99" target="_blank" class="flex items-center justify-center gap-2 w-full bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold py-3 px-4 rounded-lg mb-6 transition-all duration-300 shadow-[0_0_15px_rgba(0,136,204,0.4)] hover:scale-[1.02]">
-                <i class="fab fa-telegram-plane text-2xl animate-pulse"></i> Join Our Telegram
+            <a href="https://t.me/SagarTech99" target="_blank" class="flex items-center justify-center gap-2 w-full bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold py-3 px-4 rounded-xl mb-6 transition-all shadow-[0_0_15px_rgba(0,136,204,0.3)]">
+                <i class="fab fa-telegram-plane text-xl"></i> Join Our Telegram
             </a>
 
-            <button id="btnRandom" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg mb-4 transition shadow-lg">
+            <button id="btnRandom" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl mb-4 transition shadow-lg text-lg">
                 <i class="fas fa-random mr-2"></i> Start Random Chat
             </button>
             
@@ -46,71 +40,62 @@
                 <hr class="flex-1 border-gray-500"><span class="px-3 text-sm text-gray-300">OR</span><hr class="flex-1 border-gray-500">
             </div>
 
-            <button id="btnCreateRoom" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg mb-4 transition shadow-lg">
-                <i class="fas fa-plus mr-2"></i> Create Private Room
+            <button id="btnCreateRoom" class="w-full bg-[#10b981] hover:bg-green-600 text-white font-bold py-3.5 px-4 rounded-xl mb-4 transition shadow-lg">
+                Create Private Room
             </button>
 
             <div class="flex gap-2">
-                <input type="text" id="roomCodeInput" placeholder="Enter Room Code" class="flex-1 bg-gray-900 border border-gray-600 text-white rounded-lg px-4 py-2 uppercase outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
-                <button id="btnJoinRoom" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-5 rounded-lg transition shadow-lg">Join</button>
+                <input type="text" id="roomCodeInput" placeholder="Enter Room Code" class="flex-1 bg-gray-900 border border-gray-600 text-white rounded-xl px-4 py-3 uppercase outline-none focus:border-blue-500 transition text-center font-bold tracking-widest">
+                <button id="btnJoinRoom" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-xl transition shadow-lg">Join</button>
             </div>
         </div>
+
+        <!-- Video Chat Panel (Screenshot Jaisa Same Design) -->
+        <div id="videoPanel" class="hidden absolute inset-0 w-full h-full bg-black z-10">
+            
+            <!-- Room Code Display (For Private only) -->
+            <div id="roomCodeDisplay" class="hidden absolute top-4 left-4 bg-black/60 backdrop-blur-sm px-4 py-1.5 rounded-lg text-sm font-mono tracking-widest border border-gray-700 z-20 text-white">
+                CODE: <span id="codeSpan" class="text-blue-400 font-bold"></span>
+            </div>
+
+            <!-- Remote Video (Pura Screen Black Background par) -->
+            <video id="remoteVideo" autoplay playsinline class="w-full h-full object-cover bg-black"></video>
+            
+            <!-- Local Video (Chota wala Top-Right me Portrait Mode) -->
+            <video id="localVideo" autoplay playsinline muted class="absolute top-4 right-4 w-[100px] h-[140px] md:w-[130px] md:h-[180px] object-cover rounded-xl border border-gray-600 shadow-2xl bg-gray-800 z-20"></video>
+
+            <!-- Bottom Controls Container (Photo jaisa layout) -->
+            <div class="absolute bottom-6 left-0 right-0 flex justify-center items-center gap-3 px-2 z-20 w-full">
+                
+                <!-- Mic Button -->
+                <button id="btnToggleAudio" class="bg-[#2a364a] hover:bg-gray-600 w-[55px] h-[55px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center text-white transition shadow-lg">
+                    <i class="fas fa-microphone text-xl"></i>
+                </button>
+                
+                <!-- Video Button -->
+                <button id="btnToggleVideo" class="bg-[#2a364a] hover:bg-gray-600 w-[55px] h-[55px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center text-white transition shadow-lg">
+                    <i class="fas fa-video text-xl"></i>
+                </button>
+                
+                <!-- Next Button -->
+                <button id="btnNext" class="hidden bg-[#0066ff] hover:bg-blue-600 h-[55px] md:h-[60px] px-8 rounded-full font-semibold text-white transition shadow-lg text-lg min-w-[100px]">
+                    Next
+                </button>
+                
+                <!-- End Call Button -->
+                <button id="btnEndCall" class="bg-[#ff0033] hover:bg-red-700 h-[55px] md:h-[60px] px-6 rounded-full font-semibold text-white flex flex-col items-center justify-center transition shadow-lg min-w-[90px]">
+                    <span class="leading-tight text-[15px]">End</span>
+                    <span class="leading-tight text-[15px]">Call</span>
+                </button>
+
+            </div>
+        </div>
+
     </main>
-
-    <!-- FULL SCREEN Video Chat Panel -->
-    <div id="videoPanel" class="hidden fixed inset-0 w-full h-full bg-black z-50">
-        
-        <!-- Status Indicator in Video -->
-        <div id="videoStatusText" class="absolute top-6 left-1/2 transform -translate-x-1/2 bg-black/70 px-6 py-2 rounded-full text-green-400 font-bold z-10 text-sm md:text-base border border-gray-600 shadow-xl backdrop-blur-sm">
-            Ready
-        </div>
-
-        <!-- Room Code Display (For Private) -->
-        <div id="roomCodeDisplay" class="hidden absolute top-6 left-6 bg-black/80 px-4 py-2 rounded-lg text-sm font-mono tracking-widest border border-gray-700 shadow-lg z-10">
-            CODE: <span id="codeSpan" class="text-green-400 font-bold text-lg"></span>
-        </div>
-
-        <!-- Remote Video (Main Full Screen) -->
-        <video id="remoteVideo" autoplay playsinline class="w-full h-full object-cover bg-black"></video>
-        
-        <!-- Local Video (PIP - Camera view) -->
-        <video id="localVideo" autoplay playsinline muted class="absolute top-6 right-6 w-28 md:w-48 h-auto object-cover rounded-xl border-2 border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.5)] bg-gray-800 z-10"></video>
-
-        <!-- Controls -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900/90 border border-gray-700 px-5 md:px-8 py-4 rounded-full flex gap-4 shadow-2xl backdrop-blur-md z-10">
-            <button id="btnToggleAudio" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-full text-white transition shadow-lg"><i class="fas fa-microphone text-lg"></i></button>
-            <button id="btnToggleVideo" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-full text-white transition shadow-lg"><i class="fas fa-video text-lg"></i></button>
-            <button id="btnNext" class="hidden bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-bold transition shadow-lg text-lg">Next</button>
-            <button id="btnEndCall" class="bg-red-600 hover:bg-red-700 px-6 md:px-8 py-3 rounded-full font-bold transition shadow-lg whitespace-nowrap text-lg"><i class="fas fa-phone-slash md:hidden"></i><span class="hidden md:inline">End Call</span></button>
-        </div>
-    </div>
 
     <script type="module" src="./src/app.js"></script>
 </body>
-</html>                <button id="btnJoinRoom" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-5 rounded-lg transition shadow-lg">Join</button>
-            </div>
-        </div>
-
-        <!-- Video Chat Panel -->
-        <div id="videoPanel" class="hidden w-full h-full relative">
-            <!-- Remote Video (Main) -->
-            <video id="remoteVideo" autoplay playsinline class="w-full h-full object-cover rounded-xl bg-black"></video>
-            
-            <!-- Local Video (PIP) -->
-            <video id="localVideo" autoplay playsinline muted class="absolute top-4 right-4 w-28 md:w-48 h-auto object-cover rounded-lg border-2 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)] bg-gray-800"></video>
-
-            <!-- Room Code Display (For Private) -->
-            <div id="roomCodeDisplay" class="hidden absolute top-4 left-4 bg-black/80 px-4 py-2 rounded-lg text-sm font-mono tracking-widest border border-gray-700 shadow-lg">
-                CODE: <span id="codeSpan" class="text-green-400 font-bold text-lg"></span>
-            </div>
-
-            <!-- Controls -->
-            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900/90 border border-gray-700 px-4 md:px-6 py-3 rounded-full flex gap-3 shadow-2xl backdrop-blur-md">
-                <button id="btnToggleAudio" class="bg-gray-700 hover:bg-gray-600 p-3 md:p-4 rounded-full text-white transition"><i class="fas fa-microphone"></i></button>
-                <button id="btnToggleVideo" class="bg-gray-700 hover:bg-gray-600 p-3 md:p-4 rounded-full text-white transition"><i class="fas fa-video"></i></button>
-                <button id="btnNext" class="hidden bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full font-bold transition shadow-lg">Next</button>
-                <button id="btnEndCall" class="bg-red-600 hover:bg-red-700 px-5 md:px-6 py-2 rounded-full font-bold transition shadow-lg whitespace-nowrap"><i class="fas fa-phone-slash md:hidden"></i><span class="hidden md:inline">End Call</span></button>
-            </div>
+</html>            </div>
         </div>
 
     </main>
