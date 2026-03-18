@@ -8,3 +8,10 @@
 #localVideo {
     transform: scaleX(-1);
 }
+
+/* Base resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
