@@ -11,16 +11,13 @@ export const UI = {
     btnToggleVideo: document.getElementById('btnToggleVideo'),
     btnNext: document.getElementById('btnNext'),
     btnEndCall: document.getElementById('btnEndCall'),
-    navStatusText: document.getElementById('navStatusText'),
-    videoStatusText: document.getElementById('videoStatusText'),
+    statusText: document.getElementById('statusText'),
     roomCodeDisplay: document.getElementById('roomCodeDisplay'),
     codeSpan: document.getElementById('codeSpan'),
 
     showVideoPanel(isRandom = false) {
-        // Landing panel hide karo aur video panel show karo (Fullscreen)
         this.landingPanel.classList.add('hidden');
         this.videoPanel.classList.remove('hidden');
-        
         if(isRandom) {
             this.btnNext.classList.remove('hidden');
             this.roomCodeDisplay.classList.add('hidden');
@@ -31,15 +28,12 @@ export const UI = {
     },
 
     showLandingPanel() {
-        // Video Panel hatao, Landing page wapas lao
         this.videoPanel.classList.add('hidden');
         this.landingPanel.classList.remove('hidden');
         this.remoteVideo.srcObject = null;
     },
 
     setStatus(text) {
-        // Status text dono jagah update karo (Navbar me aur Video ke upar)
-        if(this.navStatusText) this.navStatusText.innerText = text;
-        if(this.videoStatusText) this.videoStatusText.innerText = text;
+        this.statusText.innerText = text;
     }
 };
